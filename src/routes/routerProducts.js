@@ -38,6 +38,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+// Ruta para postear un producto
 router.post("/", async (req, res) => {
     
     try {
@@ -67,7 +68,7 @@ router.put("/:pid", async (req, res) => {
     }
 });
 
-// Ruta para eliminar un usuario por su ID
+// Ruta para eliminar un producto por su ID
 router.delete("/:pid", async (req, res) => {
     try {
         await productManager.deleteOneById(req.params.id);
