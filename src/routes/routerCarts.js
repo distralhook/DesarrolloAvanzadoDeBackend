@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-
+// ruta para crear un nuevo cart
 router.post("/", async (req, res) => {
     try {
         const cart = await cartManager.insertOne(req.body);
@@ -41,6 +41,7 @@ router.post("/", async (req, res) => {
     }
 });
 
+// ruta para agregar un nuevo producto al carrito
 router.post("/:cid/product/:pid", async (req, res) => {
     try {
         const { cid, pid } = req.params;
