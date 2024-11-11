@@ -1,0 +1,23 @@
+{
+  "name": "practica_de_api_rest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-warnings ./app.js",
+    "dev": "nodemon ./app.js",
+    "stop-linux": "killall -9 node",
+    "stop-windows": "taskkill /F /IM node.exe"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

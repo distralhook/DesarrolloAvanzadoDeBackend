@@ -1,0 +1,35 @@
+[
+	{
+		"id": 1,
+		"title": "manzana",
+		"description": "qsy",
+		"code": "saddsf",
+		"price": 100,
+		"status": true,
+		"stock": 55,
+		"category": "idk",
+		"thumbnails": "link de una foto"
+	},
+	{
+		"id": 2,
+		"title": "limones",
+		"description": "sigo sin saber",
+		"code": "hgbyjnt",
+		"price": 110,
+		"status": true,
+		"stock": 65,
+		"category": "still idk",
+		"thumbnails": "fotografiaMuyBuena.png"
+	},
+	{
+		"id": 3,
+		"title": "fgrtbrfgt",
+		"description": "rftgfgrtrftgbc",
+		"code": "saddgftrgfrtbgrftsf",
+		"price": 10550,
+		"status": true,
+		"stock": 52225,
+		"category": "idk",
+		"thumbnails": ""
+	}
+]
