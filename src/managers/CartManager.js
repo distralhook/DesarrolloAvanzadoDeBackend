@@ -28,7 +28,7 @@ export default class CartManager {
     async getAll(params) {
         try {
             const paginationOptions = {
-                limit: params?.limit || 10, // Número de documentos por página (por defecto 10)
+                limit: params?.limit || 10, 
                 page: params?.page || 1, // Página actual (por defecto 1)
                 populate: "products.product", // Poblar el campo virtual 'products'
                 lean: true, // Convertir los resultados en objetos planos

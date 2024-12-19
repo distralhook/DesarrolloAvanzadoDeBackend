@@ -4,39 +4,13 @@ import ProductModel from "../models/product.model.js";
 import { convertToBoolean } from "../utils/converter.js";
 
 export default class ProductManager {
-	#productModel;
+    #productModel;
 
-	constructor() {
-		this.#productModel = ProductModel;
-	}
-
-	// Obtiene una lista de productos
-	async getAll(params) {
-        try {
-            const $and = [];
-
-            if (params?.title) $and.push({ title: { $regex: params.title, $options: "i" } });
-            const filters = $and.length > 0 ? { $and } : {};
-
-            const sort = {
-                asc: { title: 1 },
-                desc: { title: -1 },
-            };
-
-            const paginationOptions = {
-                limit: params?.limit || 10, // Número de documentos por página (por defecto 10)
-                page: params?.page || 1, // Página actual (por defecto 1)
-                sort: sort[params?.sort] ?? {},
-                lean: true, // Convertir los resultados en objetos planos
-            };
-            return await this.#productModel.paginate(filters, paginationOptions);
-        } catch (error) {
-            throw ErrorManager.handleError(error);
-        }
+    constructor() {
+        this.#productModel = ProductModel;
     }
 
-	// Busca un producto por su ID
-	async #findOneById(id) {
+    async #findOneById(id) {
         if (!isValidID(id)) {
             throw new ErrorManager("ID inválido", 400);
         }
@@ -50,7 +24,33 @@ export default class ProductManager {
         return product;
     }
 
-	// Obtiene un producto específico por su ID
+    async getAll(params) {
+        try {
+            const $and = [];
+
+            if (params?.title) $and.push({ title: { $regex: params.title, $options: "i" } });
+            const filters = $and.length > 0 ? { $and } : {};
+
+            const sort = {
+                asc: { title: 1 },
+                desc: { title: -1 },
+            };
+
+            const paginationOptions = {
+                limit: params?.limit || 10, // Número de documentos por página (por defecto 10)
+                page: params?.page || 1,
+                sort: sort[params?.sort] ?? {},
+                lean: true,
+            };
+            const result = await this.#productModel.paginate(filters, paginationOptions);
+            result.docs = result.docs || [];
+            return result;
+            // return await this.#productModel.find();
+        } catch (error) {
+            throw ErrorManager.handleError(error);
+        }
+    }
+
     async getOneById(id) {
         try {
             return await this.#findOneById(id);
@@ -59,8 +59,7 @@ export default class ProductManager {
         }
     }
 
-	// Inserta un producto
-	async insertOne(data, filename) {
+    async insertOne(data, filename) {
         try {
             const product = await this.#productModel.create({
                 ...data,
@@ -74,8 +73,7 @@ export default class ProductManager {
         }
     }
 
-	// Actualiza un producto en específico
-	async updateOneById(id, data) {
+    async updateOneById(id, data) {
         try {
             const product = await this.#findOneById(id);
             const newValues = {
@@ -93,8 +91,7 @@ export default class ProductManager {
         }
     }
 
-	// Elimina un producto en específico
-	async deleteOneById(id) {
+    async deleteOneById(id) {
         try {
             const product = await this.#findOneById(id);
             await product.deleteOne();

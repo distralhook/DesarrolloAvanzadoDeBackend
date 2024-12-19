@@ -43,7 +43,7 @@ router.get("/cart/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        res.render("realTimeProducts", { title: "Inicio" });
+        res.render("home", { title: "Inicio" });
     } catch (error) {
         res.status(500).send(`<h1>Error</h1><h3>${error.message}</h3>`);
     }

@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import paginate from "mongoose-paginate-v2";
 
-const productSchema = new Schema({
+const productoSchema = new Schema({
     title:{
         type: String,
         required: [ true, "El nombre del producto es obligatorio" ],
@@ -64,8 +64,8 @@ const productSchema = new Schema({
 });
 
 // Agrega mongoose-paginate-v2 para habilitar las funcionalidades de paginación.
-productSchema.plugin(paginate);
+productoSchema.plugin(paginate);
 
-const ProductModel = model("products", productSchema);
+const ProductModel = model("producto", productoSchema);
 
 export default ProductModel;

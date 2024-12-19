@@ -28,8 +28,13 @@ let currentPage = 1;
 let currentSort = "asc";
 
 socket.on("products-list", (data) => {
-    const { docs: products, totalPages=1 } = data || {};
+    const { docs: products, totalPages=1 } = data.products || {};
     productsList.innerText = ""; //Limpia la lista
+
+    console.log(products," ", data)
+
+    console.log(typeof products)
+    console.log(typeof data)
 
     if (!Array.isArray(products)) {
         console.error("Los productos no están en un arreglo.");
@@ -38,15 +43,16 @@ socket.on("products-list", (data) => {
 
     products.forEach((product) => {
         productsList.innerHTML += `<tr>
-        <td> ${product.id} </td>
-        <td>  ${product.title} </td>
-        <td> $${product.price} </td>
+        <td> <strong>ID:</strong> ${product.id} </td>
+        <td> <strong>TITULO:</strong> ${product.title} </td>
+        <td> <strong>PRECIO:</strong> $${product.price} </td>
         <td>
         <button onclick="window.location.href='/product/${product.id}'">Info</button>
         <button class="add-to-cart" data-product-id="${product.id}">+</button>
         <button class="remove-from-cart" data-product-id="${product.id}">-</button>
         </td>
         </tr>
+        <br>
         `;
     });
     const paginationInfo = document.getElementById("pagination-info");

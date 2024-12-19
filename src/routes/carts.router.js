@@ -6,7 +6,9 @@ const router = Router();
 const cartManager = new CartManager();
 //const productsManager = new ProductsManager();
 
+
 //* Ruta para obtener el carrito
+/*
 router.get("/", async (req, res) => {
     try {
         const carts = await cartManager.getAll(req.query);
@@ -14,7 +16,7 @@ router.get("/", async (req, res) => {
     } catch (error) {
         res.status(error.code).json({ status: "error", message: error.message });
     }
-});
+});*/
 
 //* Ruta para obtener un cart en específico por su ID
 router.get("/:id", async (req, res) => {
@@ -65,6 +67,13 @@ router.delete("/:id/products/:pid", async (req, res) => {
         res.status(200).json({ status: true, payload: cartDeleted });
     } catch (error) {
         errorHandler(res, error.message);
+    }
+});
+router.get("/", async (req, res) => {
+    try {
+        res.render("cart", { title: "Carrito" });
+    } catch (error) {
+        res.status(500).send(`<h1>Error</h1><h3>${error.message}</h3>`);
     }
 });
 

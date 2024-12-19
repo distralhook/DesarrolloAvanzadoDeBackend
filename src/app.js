@@ -30,7 +30,7 @@ configHandleBars(app);
 
 // Declaración de rutas
 app.use("/api/products", routerProducts);
-app.use("/api/carts", routerCarts);
+app.use("/cart", routerCarts);
 app.use("/", routerViewHome);
 
 app.get("/saludo", (req, res) => {

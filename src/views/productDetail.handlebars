@@ -1,11 +1,18 @@
 <header>
-        <h1>{{product.title}}</h1>
+        <h1>DETALLES DEL PRODUCTO:</h1>
 </header>
 <main>
-    <p><strong>Precio:</strong> ${{product.price}}</p>
-    <p><strong>Descripción:</strong> {{product.description}}</p>
-    <p>Código: {{product.code}}</p>
-    <img src="/public/images/{{product.thumbnail}}" alt="Imagen del producto">
-    {{!-- <img src="${product.thumbnail}" alt=""> --}}
+    <ul>
+        <li>ID: {{product._id}}</li>
+        <li>Titulo: {{product.title}}</li>
+        <li>Descripción: {{product.price}}</li>
+        <li>Código: {{product.code}}</li>
+        <li>Precio: {{product.price}}</li>
+        <li>Estado: {{product.status}}</li>
+        <li>Stock: {{product.stock}}</li>
+        <li>Categoria: {{product.category}}</li>
+    </ul>
+    <img src="/public/images/{{product.thumbnail}}" alt="Imagen no encontrada">
+    <br>
     <button onclick="window.history.back()">Volver</button>
 </main>
