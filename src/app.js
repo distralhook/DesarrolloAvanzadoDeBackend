@@ -1,13 +1,18 @@
 import express from "express";
+import { connectDB } from "./config/mongoose.config.js";
 import {config as configHandleBars} from "./config/handlebars.config.js"
 import {config as configWebsocket} from "./config/websocket.config.js";
 
 // Importación de enrutadores
-import routerProducts from "./routes/routerProducts.js";
-import routerCarts from "./routes/routerCarts.js";
+import routerProducts from "./routes/products.router.js";
+import routerCarts from "./routes/carts.router.js";
 import routerViewHome from "./routes/home.view.router.js";
 
 const app = express();
+
+// Conexión con la Base de Datos del Cloud de MongoDB
+connectDB();
+
 const PORT = 8080;
 
 // Declaración de archivos estáticos desde la carpeta 'public'
@@ -31,11 +36,9 @@ app.use("/", routerViewHome);
 app.get("/saludo", (req, res) => {
     res.send("hola");
 });
-
 app.get("/", (req, res) => {
     res.send("Welcome to the homepage!");
 });
-
 
 // Control de rutas inexistentes
 app.use("*", (req, res) => {
